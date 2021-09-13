@@ -1,17 +1,14 @@
+import "reflect-metadata";
 import express, { request, response } from "express";
+
+import { router } from "./routes";
+
+import "./database";
 
 const app = express();
 
-// Routes
-app.get("/test", (request, response) => {
-    // Request => In
-    // Response => Out
-    return response.send("Hello first API in NODE");
-});
+app.use(express.json());
 
-app.post("/test-post", (request, response) => {
-    return response.send("Hello method POST");
-});
+app.use(router);
 
-// http://localhost:3000
 app.listen(3000, () => console.log("Server is running, time to CODE"));
